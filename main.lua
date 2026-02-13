@@ -178,6 +178,11 @@ function Library:Window(Name)
 		TabFrame.Size = scale(0.98, 1)
 		TabFrame.BackgroundTransparency = 1
 
+		local List = new("UIListLayout")
+		List.Parent = TabFrame
+		List.SortOrder = Enum.SortOrder.LayoutOrder
+		List.Padding = udim(0, 5)
+
 		local Selected = #Tabs == 0
 		TabFrame.Visible = Selected
 		Tab.TextTransparency = Selected and 0 or 0.3
@@ -230,15 +235,16 @@ function Library:Window(Name)
 			List.SortOrder = Enum.SortOrder.LayoutOrder
 			List.Padding = udim(0, 5)
 
-			if not Name then
+			if Name then
 				local Title = new("TextLabel")
-				Title.Parent = Section
+				Title.Parent = TabFrame
 				Title.Text = Name
 				Title.BackgroundTransparency = 0.7
 				Title.Size = udim2(1, 0, 0, 40)
+				Title.LayoutOrder = Section.LayoutOrder - 1
+				Title.BorderSizePixel = 0
 				TextEffect(Title, "Black")
 				Pad(Title):A(0.1, 0)
-				Stroke(Title):Color(color(1, 1, 1)):Transparency(0.8)
 			end
 
 			local SectionClass = {}
