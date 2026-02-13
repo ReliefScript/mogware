@@ -224,7 +224,7 @@ function Library:Window(Name)
 		function TabClass:Section(Name)
 			local Section = new("Frame")
 			Section.Parent = TabFrame
-			Section.Size = scale(1 0)
+			Section.Size = scale(1, 0)
 			Section.AutomaticSize = Enum.AutomaticSize.Y
 			Section.BackgroundColor3 = color(1, 1, 1)
 			Section.BackgroundTransparency = 0.9
