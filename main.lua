@@ -244,7 +244,7 @@ function Library:Window(Name)
 				Title.Text = Name
 				Title.BackgroundTransparency = 0.7
 				Title.Size = udim2(1, 0, 0, 40)
-				Title.LayoutOrder = SectionCount
+				Title.LayoutOrder = (SectionCount * 2) - 1
 				Title.BorderSizePixel = 0
 				TextEffect(Title, "Black")
 				Pad(Title):A(0.1, 0)
