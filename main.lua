@@ -175,7 +175,7 @@ function Library:Window(Name)
 		Tab.Size = udim2(1, 0, 0, 40)
 		Tab.TextTransparency = 0.3
 		TextEffect(Tab, "Bold")
-		Pad(Tab):A(0, 5)
+		Pad(Tab):A(0.1, 0):L(0.02):R(0.02)
 
 		local TabFrame = new("ScrollingFrame")
 		TabFrame.Parent = FrameHolder
