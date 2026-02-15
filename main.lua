@@ -119,7 +119,7 @@ Screen.ResetOnSpawn = false
 function Library:Window(Name)
 	local Frame = new("Frame")
 	Frame.Parent = Screen
-	Frame.Size = scale(0.25, 0.3)
+	Frame.Size = scale(0.23, 0.3)
 	Frame.BorderSizePixel = 0
 	Frame.BackgroundTransparency = 0.4
 	Frame.BackgroundColor3 = color(0, 0, 0)
@@ -127,6 +127,7 @@ function Library:Window(Name)
 	Frame.Draggable = true
 	Center(Frame)
 	Stroke(Frame):Color(color(1, 1, 1)):Transparency(0.75)
+	Ratio(Frame, 1.75)
 
 	local Title = new("TextLabel")
 	Title.Parent = Frame
@@ -137,12 +138,15 @@ function Library:Window(Name)
 	TextEffect(Title, "Black")
 	Pad(Title):L(0, 8):T(0, 8)
 
-	local TabHolder = new("Frame")
+	local TabHolder = new("ScrollingFrame")
 	TabHolder.Parent = Frame
 	TabHolder.Size = scale(0.2, 0.88)
 	TabHolder.AnchorPoint = vector2(0, 1)
 	TabHolder.Position = scale(0, 1)
 	TabHolder.BackgroundTransparency = 1
+	TabHolder.ScrollBarThickness = 0
+	TabHolder.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	TabHolder.CanvasSize = scale(0, 0)
 
 	local List = new("UIListLayout")
 	List.Parent = TabHolder
@@ -168,15 +172,19 @@ function Library:Window(Name)
 		Tab.Parent = TabHolder
 		Tab.Text = Name
 		Tab.BackgroundTransparency = 1
-		Tab.Size = scale(1, 0.1)
+		Tab.Size = udim2(1, 0, 0, 40)
 		Tab.TextTransparency = 0.3
 		TextEffect(Tab, "Bold")
 		Pad(Tab):A(0, 5)
 
-		local TabFrame = new("Frame")
+		local TabFrame = new("ScrollingFrame")
 		TabFrame.Parent = FrameHolder
 		TabFrame.Size = scale(0.98, 1)
 		TabFrame.BackgroundTransparency = 1
+		TabFrame.ScrollBarThickness = 6
+		TabFrame.ScrollBarImageTransparency = 0.5
+		TabFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		TabFrame.CanvasSize = scale(0, 0)
 
 		local List = new("UIListLayout")
 		List.Parent = TabFrame
@@ -272,6 +280,23 @@ function Library:Window(Name)
 				end)
 
 				Button.MouseButton1Down:Connect(Callback)
+			end
+
+			function SectionClass:TextBox(Name, Callback)
+				local Box = new("TextBox")
+				Box.Parent = Section
+				Box.Size = udim2(1, 0, 0, 30)
+				Box.BackgroundColor3 = color(0, 0, 0)
+				Box.BackgroundTransparency = 0.5
+				Box.PlaceholderText = Name
+				Box.Text = ""
+				Box.BorderSizePixel = 0
+				TextEffect(Box, "Bold")
+				Pad(Box):A(0.1, 0)
+
+				Box.FocusLost:Connect(function()
+					Callback(Box.Text)
+				end)
 			end
 
 			function SectionClass:Toggle(Name, Callback)
