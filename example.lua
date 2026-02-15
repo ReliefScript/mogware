@@ -24,3 +24,8 @@ end)
 Section:Toggle("Toggle", function(Toggled)
     print(`Toggle set to {Toggled}!`)
 end)
+
+-- TextBox >> Section:TextBox(Name, Callback)
+Section:TextBox("Toggle", function(Text)
+    print(`TextBox set to {Text}!`)
+end)
