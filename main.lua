@@ -131,12 +131,12 @@ function Library:Window(Name)
 
 	local Title = new("TextLabel")
 	Title.Parent = Frame
-	Title.Size = scale(1, 0.1)
+	Title.Size = scale(1, 0.12)
 	Title.BackgroundTransparency = 1
 	Title.TextXAlignment = Enum.TextXAlignment.Left
 	Title.Text = Name or "Mogware"
 	TextEffect(Title, "Black")
-	Pad(Title):L(0, 8):T(0, 8)
+	Pad(Title):A(0.1):L(0.015)
 
 	local TabHolder = new("ScrollingFrame")
 	TabHolder.Parent = Frame
@@ -175,7 +175,7 @@ function Library:Window(Name)
 		Tab.Size = udim2(1, 0, 0, 40)
 		Tab.TextTransparency = 0.3
 		TextEffect(Tab, "Bold")
-		Pad(Tab):A(0.1, 0):L(0.02):R(0.02)
+		Pad(Tab):A(0.1, 0)
 
 		local TabFrame = new("ScrollingFrame")
 		TabFrame.Parent = FrameHolder
@@ -193,14 +193,14 @@ function Library:Window(Name)
 
 		local Selected = #Tabs == 0
 		TabFrame.Visible = Selected
-		Tab.TextTransparency = Selected and 0 or 0.3
+		Tab.TextTransparency = Selected and 0.3 or 0.7
 
 		table.insert(Tabs, {Tab, TabFrame, Selected})
 
 		Tab.MouseEnter:Connect(function()
 			for _, T in Tabs do
 				if T[1] == Tab then
-					Tab.TextTransparency = T[3] and 0 or 0.6
+					Tab.TextTransparency = T[3] and 0.3 or 0.5
 				end
 			end
 		end)
@@ -208,7 +208,7 @@ function Library:Window(Name)
 		Tab.MouseLeave:Connect(function()
 			for _, T in Tabs do
 				if T[1] == Tab then
-					Tab.TextTransparency = T[3] and 0 or 0.3
+					Tab.TextTransparency = T[3] and 0.3 or 0.7
 				end
 			end
 		end)
@@ -216,7 +216,6 @@ function Library:Window(Name)
 		Tab.MouseButton1Down:Connect(function()
 			for _, T in Tabs do
 				local isSelf = (T[2] == TabFrame)
-				T[1].TextTransparency = isSelf and 0 or 0.3
 				T[2].Visible = isSelf
 
 				if isSelf then
