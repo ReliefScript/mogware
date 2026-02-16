@@ -119,7 +119,7 @@ Screen.ResetOnSpawn = false
 function Library:Window(Name)
 	local Frame = new("Frame")
 	Frame.Parent = Screen
-	Frame.Size = scale(0.23, 0.3)
+	Frame.Size = scale(0.35, 0.35)
 	Frame.BorderSizePixel = 0
 	Frame.BackgroundTransparency = 0.4
 	Frame.BackgroundColor3 = color(0, 0, 0)
